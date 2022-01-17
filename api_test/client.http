@@ -1,0 +1,6 @@
+@address = http://localhost:8888
+
+
+###
+GET {{address}}/ HTTP/1.1
+

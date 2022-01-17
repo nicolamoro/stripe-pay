@@ -1,0 +1,58 @@
+{
+  "files.exclude": {
+    "**/.venv": true,
+    "**/.pytest_cache": true,
+    "**/.git": true,
+    "**/__pycache__": true,
+    "cov_html": true,
+    ".coverage": true,
+    "cov.xml": true,
+    ".idea": true
+  },
+  "python.analysis.extraPaths": ["${workspaceFolder}"],
+  "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.linting.flake8Args": [
+    "--exclude=src/migrations/*,.venv/*",
+    "--extend-ignore=E203",
+    "--max-complexity=10",
+    "--max-line-length=120"
+  ],
+  "python.linting.ignorePatterns": ["src/migrations/*", ".venv/*"],
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": [
+    "--exclude=/(src/migrations|.venv)/",
+    "--line-length=120",
+    "--check"
+  ],
+  "editor.formatOnSave": true,
+  "python.testing.pytestArgs": [
+    "--cov=src",
+    "--cov-branch",
+    "--cov-report=xml:cov.xml",
+    "--cov-report=html:cov_html",
+    "--cov-report=term-missing",
+    "--cov-config=.coveragerc",
+    "--showlocals",
+    "--verbose",
+    "src/tests"
+  ],
+  "python.testing.pytestEnabled": true,
+  "python.testing.autoTestDiscoverOnSaveEnabled": false,
+  "python.sortImports.args": [
+    "--skip=src/migrations",
+    "--skip=.venv",
+    "--multi-line=3",
+    "--trailing-comma"
+  ],
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.languageServer": "Pylance",
+  "vscode-coverage-highlighter.defaultState": "disable",
+  "git.ignoreLimitWarning": true
+}
