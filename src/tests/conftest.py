@@ -1,7 +1,7 @@
 import pytest
-from app import make_app
+from app import Application
 
 
 @pytest.fixture
 def app():
-    return make_app()
+    return Application()

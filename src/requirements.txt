@@ -8,3 +8,4 @@ pytest-tornado==0.8.1
 python-dotenv==0.15.0
 rope==0.18.0
 tornado==6.1
+tornado-swagger==1.4.1
