@@ -67,3 +67,6 @@ To launch unit tests and coverage verification, run:
 cd src/
 py.test --cov=. --cov-config=.coveragerc --cov-branch --cov-fail-under=100 --cov-report=term-missing --showlocals --verbose tests/
 ```
+
+### API documentation
+You will find documentation about implemented APIs (in Swagger format) following [this link](http://localhost:8888/api/1/docs).
