@@ -15,13 +15,6 @@ cd src
 pip install -r requirements.txt
 ```
 
-For development environment tasks like linting, testing, ecc... you need also to run:
-
-```
-cd src
-pip install -r requirements_dev.txt
-```
-
 ### Environment
 
 To run the project you need to set some environment variable. In order to do this you can create a `.env` file into the root of the project, starting from the `.env-sample` file as an example.
@@ -42,7 +35,6 @@ To start project using docker:
 docker build --pull --no-cache -t twinkly-assignment:0.1.0 -f Dockerfile .
 docker run --env-file .env -p 8888:8888 -ti --rm twinkly-assignment:0.1.0
 ```
-
 
 ### Linters
 
