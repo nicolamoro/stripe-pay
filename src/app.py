@@ -1,17 +1,28 @@
+import stripe
 import tornado.ioloop
 import tornado.web
 from tornado_swagger.setup import setup_swagger
 
 from config import Config
-from handlers.main import MainHandler
+from handlers.customer import CustomerHandler
+from handlers.customers import CustomersHandler
+from handlers.login import LoginHandler
+from handlers.product import ProductPurchaseHandler
+from handlers.products import ProductsHandler
 
 
 class Application(tornado.web.Application):
     _routes = [
-        tornado.web.url(f"{Config.API_BASE_URL}/", MainHandler),
+        tornado.web.url(fr"{Config.API_BASE_URL}/login", LoginHandler),
+        tornado.web.url(fr"{Config.API_BASE_URL}/customers", CustomersHandler),
+        tornado.web.url(fr"{Config.API_BASE_URL}/customers/([^/]+)", CustomerHandler),
+        tornado.web.url(fr"{Config.API_BASE_URL}/products", ProductsHandler),
+        tornado.web.url(fr"{Config.API_BASE_URL}/products/([^/]+)/purchase", ProductPurchaseHandler),
     ]
 
     def __init__(self):
+        stripe.api_key = Config.STRIPE_SECRET_KEY
+
         setup_swagger(
             self._routes,
             swagger_url=f"{Config.API_BASE_URL}{Config.SWAGGERUI_URL}",
@@ -20,6 +31,7 @@ class Application(tornado.web.Application):
             title=Config.SWAGGERUI_TITLE,
             contact=Config.SWAGGERUI_CONTACT,
         )
+
         super(Application, self).__init__(self._routes)
 
 

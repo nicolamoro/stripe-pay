@@ -12,3 +12,10 @@ class Config:
     SWAGGERUI_TITLE = "Twinkly Assignment API"
     SWAGGERUI_DESCRIPTION = "Documentation of API implemented"
     SWAGGERUI_CONTACT = "nikimoro@gmail.com"
+
+    # Stripe
+    STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "SuperSecretKey")
+
+    # JWT
+    JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "SomeRandomSecretPhrase")
+    JWT_ACCESS_TOKEN_EXPIRES = int(os.environ.get("JWT_ACCESS_TOKEN_EXPIRES", 900))
