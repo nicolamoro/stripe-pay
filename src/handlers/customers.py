@@ -40,9 +40,8 @@ class CustomersHandler(tornado.web.RequestHandler):
             return
 
         # User password is saved hashed into customer metadata
-        if user_data.get("password"):
-            user_data["metadata"] = {"password": generate_hash(user_data["password"])}
-            del user_data["password"]
+        user_data["metadata"] = {"password": generate_hash(user_data["password"])}
+        del user_data["password"]
 
         try:
             stripe.Customer.create(**user_data)
