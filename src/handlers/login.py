@@ -38,9 +38,9 @@ class LoginHandler(tornado.web.RequestHandler):
         """
         try:
             login_data = login_schema.load(json.loads(self.request.body))
-        except Exception:
+        except Exception as e:
             self.set_status(400)
-            self.write({"message": "Invalid data"})
+            self.write({"message": "Invalid data", "description": e.messages})
             self.finish()
             return
 
