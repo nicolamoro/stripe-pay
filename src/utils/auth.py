@@ -44,7 +44,7 @@ def require_jwt_auth(handler_class):
                 if parts[0].lower() != "bearer" or len(parts) == 1 or len(parts) > 2:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write("Invalid Header Authorization")
+                    handler.write({"message": "Invalid Header Authorization"})
                     handler.finish()
                     return
 
@@ -60,12 +60,12 @@ def require_jwt_auth(handler_class):
                 except Exception as e:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write(e.message)
+                    handler.write({"message": e.message})
                     handler.finish()
             else:
                 handler._transforms = []
                 handler.set_status(401)
-                handler.write("Missing authorization")
+                handler.write({"message": "Missing authorization"})
                 handler.finish()
 
             return True
