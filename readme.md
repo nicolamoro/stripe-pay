@@ -64,9 +64,19 @@ flake8 --exclude=_deps --extend-ignore=E203 --max-complexity=10 --max-line-lengt
 To launch unit tests and coverage verification, run:
 
 ```
-cd src/
-py.test --cov=. --cov-config=.coveragerc --cov-branch --cov-fail-under=100 --cov-report=term-missing --showlocals --verbose tests/
+py.test --cov=src --cov-config=.coveragerc --cov-branch --cov-report=xml:cov.xml --cov-report=html:cov_html --cov-fail-under=100 --cov-report=term-missing --showlocals --verbose src/tests/
+```
+
+After this command you can check coverage report looking at:
+
+```
+cov_html/index.html
 ```
 
 ### API documentation
-You will find documentation about implemented APIs (in Swagger format) following [this link](http://localhost:8888/api/1/docs).
+
+With service running, you will find documentation about implemented APIs (in Swagger format) browsing:
+
+```
+http://localhost:8888/api/1/docs
+```
