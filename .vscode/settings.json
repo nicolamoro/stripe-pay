@@ -15,15 +15,15 @@
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "python.linting.flake8Args": [
-    "--exclude=src/migrations/*,.venv/*",
+    "--exclude=.venv/*",
     "--extend-ignore=E203",
     "--max-complexity=10",
     "--max-line-length=120"
   ],
-  "python.linting.ignorePatterns": ["src/migrations/*", ".venv/*"],
+  "python.linting.ignorePatterns": [".venv/*"],
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": [
-    "--exclude=/(src/migrations|.venv)/",
+    "--exclude=/(.venv)/",
     "--line-length=120",
     "--check"
   ],
@@ -42,7 +42,6 @@
   "python.testing.pytestEnabled": true,
   "python.testing.autoTestDiscoverOnSaveEnabled": false,
   "python.sortImports.args": [
-    "--skip=src/migrations",
     "--skip=.venv",
     "--multi-line=3",
     "--trailing-comma"

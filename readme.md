@@ -42,7 +42,7 @@ To verify that imports are correctly formatted run:
 
 ```
 cd src/
-isort --skip=_deps --skip=makeself_docker --multi-line=3 --trailing-comma --check-only --diff --stdout .
+isort --skip=_deps --multi-line=3 --trailing-comma --check-only --diff --stdout .
 ```
 
 To verify that code is correctly formatted run:
