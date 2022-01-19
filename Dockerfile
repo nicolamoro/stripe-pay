@@ -3,6 +3,8 @@ FROM python:3.9.0-alpine3.12
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH="/app:/app/_deps"
 
+RUN apk add --no-cache build-base gcc
+
 ADD src /app
 
 RUN pip install pip==20.2.4 --upgrade
