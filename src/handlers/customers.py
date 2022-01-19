@@ -3,7 +3,7 @@ import json
 import stripe
 import tornado.web
 
-from schemas import customer_post_schema
+from schemas import customer_schema
 from utils.hash import generate_hash
 
 
@@ -18,7 +18,7 @@ class CustomersHandler(tornado.web.RequestHandler):
         parameters:
         -   name: customer
             in: body
-            description: customer to be created
+            description: Customer to be created
             schema:
                 $ref: '#/definitions/CustomerSchema'
         produces:
@@ -32,14 +32,14 @@ class CustomersHandler(tornado.web.RequestHandler):
                 description: Error creating customer
         """
         try:
-            user_data = customer_post_schema.load(json.loads(self.request.body))
+            user_data = customer_schema.load(json.loads(self.request.body))
         except Exception as e:
             self.set_status(400)
             self.write({"message": "Invalid data", "description": e.messages})
             self.finish()
             return
 
-        # user password is saved hashed into customer metadata
+        # User password is saved hashed into customer metadata
         if user_data.get("password"):
             user_data["metadata"] = {"password": generate_hash(user_data["password"])}
             del user_data["password"]
@@ -52,5 +52,5 @@ class CustomersHandler(tornado.web.RequestHandler):
             self.finish()
             return
 
-        self.write(customer_post_schema.dump(user_data))
+        self.write(customer_schema.dump(user_data))
         self.set_status(201, "Created")

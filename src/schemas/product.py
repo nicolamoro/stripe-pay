@@ -12,19 +12,19 @@ class ProductSchema(Schema):
     description: Product object
     properties:
         id:
-            description:  product id
+            description: Product id
             type: string
         active:
-            description: active flag
+            description: Active flag
             type: boolean
         description:
-            description: product description
+            description: Product description
             type: string
         name:
-            description: product name
+            description: Product name
             type: string
         price:
-            description: the product price
+            description: The product price
             $ref: '#/definitions/PriceSchema'
     """
 

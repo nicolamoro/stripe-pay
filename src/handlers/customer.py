@@ -13,12 +13,14 @@ class CustomerHandler(tornado.web.RequestHandler):
         - Customers
         summary: Delete a customer
         description: Delete a customer
+        security:
+            - JWT: []
         produces:
         - application/json
         parameters:
         -   name: customer_id
             in: path
-            description: id of the customer
+            description: Id of the customer
             required: true
             type: string
         responses:

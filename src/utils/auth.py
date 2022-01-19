@@ -58,15 +58,15 @@ def require_jwt_auth(handler_class):
                         algorithms=["HS256"],
                     )
 
-                except Exception as e:
+                except Exception:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write({"message": e.message})
+                    handler.write({"message": "Missing Authorization"})
                     handler.finish()
             else:
                 handler._transforms = []
                 handler.set_status(401)
-                handler.write({"message": "Missing authorization"})
+                handler.write({"message": "Missing Authorization"})
                 handler.finish()
 
             return True

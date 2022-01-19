@@ -10,10 +10,10 @@ class PriceSchema(Schema):
     description: Price object
     properties:
         currency:
-            description: price currency
+            description: Price currency
             type: string
         unit_amount:
-            description: price unit amount
+            description: Price unit amount
             type: integer
     """
 

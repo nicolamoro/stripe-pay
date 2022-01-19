@@ -30,6 +30,7 @@ class Application(tornado.web.Application):
             api_version=Config.API_VERSION,
             title=Config.SWAGGERUI_TITLE,
             contact=Config.SWAGGERUI_CONTACT,
+            security_definitions={"JWT": {"type": "apiKey", "in": "header", "name": "Authorization"}},
         )
 
         super(Application, self).__init__(self._routes)

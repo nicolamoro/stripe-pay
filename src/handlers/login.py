@@ -3,7 +3,7 @@ import json
 import stripe
 import tornado.web
 
-from schemas import login_post_schema
+from schemas import login_schema
 from utils.auth import create_jwt_token
 from utils.hash import generate_hash
 
@@ -21,7 +21,7 @@ class LoginHandler(tornado.web.RequestHandler):
         parameters:
         -   name: customer
             in: body
-            description: authentication data
+            description: Authentication data
             schema:
                 $ref: '#/definitions/LoginSchema'
         produces:
@@ -37,7 +37,7 @@ class LoginHandler(tornado.web.RequestHandler):
                 description: Unauthenticated
         """
         try:
-            login_data = login_post_schema.load(json.loads(self.request.body))
+            login_data = login_schema.load(json.loads(self.request.body))
         except Exception:
             self.set_status(400)
             self.write({"message": "Invalid data"})

@@ -1,7 +1,7 @@
 import stripe
 import tornado.web
 
-from schemas import products_get_schema
+from schemas import products_schema
 from utils.auth import require_jwt_auth
 
 
@@ -14,11 +14,13 @@ class ProductsHandler(tornado.web.RequestHandler):
         - Products
         summary: List all products with price
         description: List all products with price
+        security:
+            - JWT: []
         produces:
         - application/json
         responses:
             200:
-                description: list of products with associated price
+                description: List of products with associated price
                 schema:
                     type: object
                     properties:
@@ -42,4 +44,4 @@ class ProductsHandler(tornado.web.RequestHandler):
             # handle multiple prices... at the moment only first price is considered
             product.price = prices.data[0]
 
-        self.write({"data": products_get_schema.load(products)})
+        self.write({"data": products_schema.load(products)})
