@@ -15,7 +15,10 @@ class PriceSchema(Schema):
         unit_amount:
             description: Price unit amount
             type: integer
+    required:
+        - currency
+        - unit_amount
     """
 
-    currency = fields.Str(validate=validate.Length(equal=3))
-    unit_amount = fields.Integer()
+    currency = fields.Str(validate=validate.Length(equal=3), required=True)
+    unit_amount = fields.Integer(required=True)

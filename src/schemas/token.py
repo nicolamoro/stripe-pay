@@ -7,11 +7,13 @@ class TokenSchema(Schema):
     """
     ---
     type: object
-    description: Token object
+    description: Access Token object
     properties:
-        token:
-            description: Token
+        access_token:
+            description: Access Token
             type: string
+    required:
+        - access_token
     """
 
     token = fields.Str(required=True)

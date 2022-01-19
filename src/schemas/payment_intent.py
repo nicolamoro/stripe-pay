@@ -27,11 +27,18 @@ class PaymentIntentSchema(Schema):
         status:
             description: Payment intent status
             type: string
+    required:
+        - id
+        - amount
+        - currency
+        - customer
+        - receipt_email
+        - status
     """
 
     id = fields.Str(required=True)
-    amount = fields.Integer()
-    currency = fields.Str(validate=validate.Length(equal=3))
+    amount = fields.Integer(required=True)
+    currency = fields.Str(validate=validate.Length(equal=3), required=True)
     customer = fields.Str(required=True)
-    receipt_email = fields.Str(validate=validate.Email())
-    status = fields.Str(dump_only=True)
+    receipt_email = fields.Str(validate=validate.Email(), required=True)
+    status = fields.Str(dump_only=True, required=True)

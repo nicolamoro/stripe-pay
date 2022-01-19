@@ -26,10 +26,13 @@ class ProductSchema(Schema):
         price:
             description: The product price
             $ref: '#/definitions/PriceSchema'
+    required:
+        - id
+        - name
     """
 
     id = fields.Str(required=True)
-    active = fields.Bool(missing=True)
+    active = fields.Bool(load_default=True)
     description = fields.Str()
     name = fields.Str(required=True)
     price = fields.Nested(PriceSchema, unknown=EXCLUDE)

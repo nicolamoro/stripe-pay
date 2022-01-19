@@ -15,6 +15,9 @@ class LoginSchema(Schema):
         password:
             description: Password
             type: string
+    required:
+        - username
+        - password
     """
 
     username = fields.Str(required=True)

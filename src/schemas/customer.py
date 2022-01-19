@@ -32,12 +32,17 @@ class CustomerSchema(Schema):
         phone:
             description: Phone
             type: string
+    required:
+        - id
+        - password
+        - email
+        - name
     """
 
     id = fields.Str(required=True)
     password = fields.Str(load_only=True, required=True)
     address = fields.Nested(AddressSchema)
     description = fields.Str()
-    email = fields.Str(validate=validate.Email())
-    name = fields.Str()
+    email = fields.Str(required=True, validate=validate.Email())
+    name = fields.Str(required=True)
     phone = fields.Str()
