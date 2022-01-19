@@ -27,10 +27,18 @@ class ProductsHandler(tornado.web.RequestHandler):
                                 $ref: '#/definitions/ProductSchema'
 
         """
+        # TODO:
+        # see if it possible to fetch products and prices with the same API call
+        # (dashboard already does it with 'include' clause, but here doesn't work)
         products = stripe.Product.list().data
 
+        # TODO:
+        # handle multiple product pages
         for product in products:
             prices = stripe.Price.list(product=product.id)
+
+            # TODO:
+            # handle multiple prices... at the moment only first price is considered
             product.price = prices.data[0]
 
         self.write({"data": products_get_schema.load(products)})

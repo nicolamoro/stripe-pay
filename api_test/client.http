@@ -9,7 +9,7 @@ POST {{address}}/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "niki4",
+    "username": "niki",
     "password": "password"
 }
 
@@ -19,7 +19,7 @@ POST {{address}}/customers HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": "niki4",
+    "id": "niki",
     "password": "password",
     "address": {
         "city": "Vicenza",
