@@ -11,4 +11,3 @@ cov_html
 # misc
 .env*
 !.env-sample
-.idea
