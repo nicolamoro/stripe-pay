@@ -1,6 +1,8 @@
 import tornado.web
+from utils.auth import get_jwt_payload, require_jwt_auth
 
 
+@require_jwt_auth
 class ProductPurchaseHandler(tornado.web.RequestHandler):
     def post(self, product_id):
         """
@@ -21,4 +23,7 @@ class ProductPurchaseHandler(tornado.web.RequestHandler):
             200:
                 description: purchase completed successfully
         """
-        pass
+        identity = get_jwt_payload(self.request).get("identity")
+
+        self.set_status(200)
+        self.write({"message": "TO DO"})

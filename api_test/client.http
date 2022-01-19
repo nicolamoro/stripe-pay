@@ -46,6 +46,7 @@ Authorization: Bearer {{access_token}}
 ### Products list
 GET {{address}}/products HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 ### Product purchase
 POST {{address}}/products/prod_KyupHoqMth3ht3/purchase HTTP/1.1
