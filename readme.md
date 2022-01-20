@@ -80,3 +80,11 @@ With service running, you will find documentation about implemented APIs (in Swa
 ```
 http://localhost:8888/api/1/docs
 ```
+
+You can also test API calls by using file:
+
+```
+api_test/client.http
+```
+
+Using [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for VS Code you can run them directly from there.
