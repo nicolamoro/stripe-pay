@@ -41,8 +41,8 @@ class ProductPurchaseHandler(tornado.web.RequestHandler):
             )
 
             product_obj = stripe.Product.retrieve(product_id)
-            prices_obj = stripe.Price.list(product=product_id)
-            product_obj["price"] = prices_obj.get("data")[0]
+            prices_obj = stripe.Price.list(product=product_id).auto_paging_iter()
+            product_obj["price"] = next(prices_obj)
             product = product_schema.dump(product_obj)
 
         except Exception as e:

@@ -8,6 +8,17 @@ from config import Config
 from utils.auth import create_jwt_token
 
 
+class PageIterator:
+    def __init__(self, result):
+        self.result = result
+
+    def auto_paging_iter(self):
+        return iter(self.result)
+
+    def __iter__(self):
+        return iter(self.result)
+
+
 @pytest.mark.gen_test
 async def test_products_get_unauthorized(http_client, base_url):
     # arrange
@@ -31,42 +42,46 @@ async def test_products_get_ok(http_client, base_url, monkeypatch):
     # arrange
     url = f"{base_url}{Config.API_BASE_URL}/products"
     token = create_jwt_token("test_username")
-    products = {
-        "data": [
-            {
-                "id": "product_1",
-                "active": True,
-                "description": "product 1 description",
-                "name": "product 1 name",
-            },
-            {
-                "id": "product_2",
-                "active": True,
-                "description": "product 2 description",
-                "name": "product 2 name",
-            },
-            {
-                "id": "product_3",
-                "active": True,
-                "description": "product 3 description",
-                "name": "product 3 name",
-            },
-        ]
-    }
+    products = [
+        {
+            "id": "product_1",
+            "active": True,
+            "description": "product 1 description",
+            "name": "product 1 name",
+        },
+        {
+            "id": "product_2",
+            "active": True,
+            "description": "product 2 description",
+            "name": "product 2 name",
+        },
+        {
+            "id": "product_3",
+            "active": True,
+            "description": "product 3 description",
+            "name": "product 3 name",
+        },
+    ]
 
-    prices = {
-        "data": [
-            {
-                "currency": "eur",
-                "unit_amount": 100,
-            }
-        ]
-    }
+    prices = [
+        {
+            "currency": "eur",
+            "unit_amount": 100,
+        },
+        {
+            "currency": "eur",
+            "unit_amount": 200,
+        },
+        {
+            "currency": "eur",
+            "unit_amount": 300,
+        },
+    ]
 
-    _product_list_mock = MagicMock(return_value=products)
+    _product_list_mock = MagicMock(return_value=PageIterator(products))
     monkeypatch.setattr(Product, "list", _product_list_mock)
 
-    _price_list_mock = MagicMock(return_value=prices)
+    _price_list_mock = MagicMock(return_value=PageIterator(prices))
     monkeypatch.setattr(Price, "list", _price_list_mock)
 
     # act
@@ -80,4 +95,4 @@ async def test_products_get_ok(http_client, base_url, monkeypatch):
     # assert
     response_body = json.loads(response.body)
     assert response.code == 200
-    assert response_body == {"data": [{**p, "price": prices["data"][0]} for p in products["data"]]}
+    assert response_body == {"data": [{**p, "price": prices[0]} for p in products]}

@@ -9,6 +9,17 @@ from config import Config
 from utils.auth import create_jwt_token
 
 
+class PageIterator:
+    def __init__(self, result):
+        self.result = result
+
+    def auto_paging_iter(self):
+        return iter(self.result)
+
+    def __iter__(self):
+        return iter(self.result)
+
+
 @pytest.mark.gen_test
 async def test_product_purchase_post_unauthorized(http_client, base_url):
     # arrange
@@ -78,14 +89,12 @@ async def test_product_purchase_post_error_on_payment_intent(http_client, base_u
         "description": "product 1 description",
         "name": "product 1 name",
     }
-    prices = {
-        "data": [
-            {
-                "currency": "eur",
-                "unit_amount": 100,
-            }
-        ]
-    }
+    prices = [
+        {
+            "currency": "eur",
+            "unit_amount": 100,
+        }
+    ]
 
     _customer_retrieve_mock = MagicMock(return_value=customer)
     monkeypatch.setattr(Customer, "retrieve", _customer_retrieve_mock)
@@ -93,7 +102,7 @@ async def test_product_purchase_post_error_on_payment_intent(http_client, base_u
     _product_retrieve_mock = MagicMock(return_value=product)
     monkeypatch.setattr(Product, "retrieve", _product_retrieve_mock)
 
-    _price_list_mock = MagicMock(return_value=prices)
+    _price_list_mock = MagicMock(return_value=PageIterator(prices))
     monkeypatch.setattr(Price, "list", _price_list_mock)
 
     _payment_intent_create_mock = MagicMock(
@@ -138,14 +147,12 @@ async def test_product_purchase_post_ok(http_client, base_url, monkeypatch):
         "description": "product 1 description",
         "name": "product 1 name",
     }
-    prices = {
-        "data": [
-            {
-                "currency": "eur",
-                "unit_amount": 100,
-            }
-        ]
-    }
+    prices = [
+        {
+            "currency": "eur",
+            "unit_amount": 100,
+        }
+    ]
     payment_intent = {
         "id": "payment-intent-id",
         "amount": 100,
@@ -161,7 +168,7 @@ async def test_product_purchase_post_ok(http_client, base_url, monkeypatch):
     _product_retrieve_mock = MagicMock(return_value=product)
     monkeypatch.setattr(Product, "retrieve", _product_retrieve_mock)
 
-    _price_list_mock = MagicMock(return_value=prices)
+    _price_list_mock = MagicMock(return_value=PageIterator(prices))
     monkeypatch.setattr(Price, "list", _price_list_mock)
 
     _payment_intent_create_mock = MagicMock(return_value=payment_intent)
