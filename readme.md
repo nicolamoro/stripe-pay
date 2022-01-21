@@ -6,13 +6,13 @@
 
 First of all, you should create a virtual environment for installing project dependency. In order to do this you need to run:
 
-```
+```bash
 virtualenv .venv
 ```
 
 To install python project dependencies run:
 
-```
+```bash
 cd src
 pip install -r requirements.txt
 ```
@@ -26,14 +26,14 @@ For a complete list of all environment variables supported take a look at the `s
 
 To start project in development run:
 
-```
+```bash
 cd src/
 python app.py
 ```
 
 To start project using docker:
 
-```
+```bash
 docker build --pull --no-cache -t twinkly-assignment:0.1.0 -f Dockerfile .
 docker run --env-file .env -p 8888:8888 -ti --rm twinkly-assignment:0.1.0
 ```
@@ -42,21 +42,21 @@ docker run --env-file .env -p 8888:8888 -ti --rm twinkly-assignment:0.1.0
 
 To verify that imports are correctly formatted run:
 
-```
+```bash
 cd src/
 isort --skip=_deps --multi-line=3 --trailing-comma --check-only --diff --stdout .
 ```
 
 To verify that code is correctly formatted run:
 
-```
+```bash
 cd src/
 black --exclude="/_deps/" --line-length=120 --check --diff .
 ```
 
 To check code style consistency run:
 
-```
+```bash
 cd src/
 flake8 --exclude=_deps --extend-ignore=E203 --max-complexity=10 --max-line-length=120 .
 ```
@@ -65,13 +65,13 @@ flake8 --exclude=_deps --extend-ignore=E203 --max-complexity=10 --max-line-lengt
 
 To launch unit tests and coverage verification, run:
 
-```
+```bash
 py.test --cov=src --cov-config=.coveragerc --cov-branch --cov-report=xml:cov.xml --cov-report=html:cov_html --cov-fail-under=100 --cov-report=term-missing --showlocals --verbose src/tests/
 ```
 
 After this command you can check coverage report looking at:
 
-```
+```plaintext
 cov_html/index.html
 ```
 
@@ -79,13 +79,13 @@ cov_html/index.html
 
 With service running, you will find documentation about implemented APIs (in Swagger format) browsing:
 
-```
+```plaintext
 http://localhost:8888/api/1/docs
 ```
 
 You can also test API calls by using file:
 
-```
+```plaintext
 api_test/client.http
 ```
 
