@@ -1,3 +1,5 @@
+[![GitHub Super-Linter](https://github.com/nicolamoro/twinkly-assignment/workflows/Build/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 # Twinkly backend assignment
 
 ### Requirements
