@@ -1,8 +1,8 @@
-[![GitHub Super-Linter](https://github.com/nicolamoro/twinkly-assignment/workflows/Build/badge.svg)](https://github.com/marketplace/actions/super-linter)
-
 # Twinkly backend assignment
 
-### Requirements
+[![GitHub Super-Linter](https://github.com/nicolamoro/twinkly-assignment/workflows/Build/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
+## Requirements
 
 First of all, you should create a virtual environment for installing project dependency. In order to do this you need to run:
 
@@ -17,12 +17,12 @@ cd src
 pip install -r requirements.txt
 ```
 
-### Environment
+## Environment
 
 To run the project you need to set some environment variable. In order to do this you can create a `.env` file into the root of the project, starting from the `.env-sample` file as an example.
 For a complete list of all environment variables supported take a look at the `src/config.py` file.
 
-### Run project
+## Run project
 
 To start project in development run:
 
@@ -38,7 +38,7 @@ docker build --pull --no-cache -t twinkly-assignment:0.1.0 -f Dockerfile .
 docker run --env-file .env -p 8888:8888 -ti --rm twinkly-assignment:0.1.0
 ```
 
-### Linters
+## Linters
 
 To verify that imports are correctly formatted run:
 
@@ -61,7 +61,7 @@ cd src/
 flake8 --exclude=_deps --extend-ignore=E203 --max-complexity=10 --max-line-length=120 .
 ```
 
-### Unit Testing
+## Unit Testing
 
 To launch unit tests and coverage verification, run:
 
@@ -75,7 +75,7 @@ After this command you can check coverage report looking at:
 cov_html/index.html
 ```
 
-### API documentation
+## API documentation
 
 With service running, you will find documentation about implemented APIs (in Swagger format) browsing:
 
