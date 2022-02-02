@@ -1,4 +1,4 @@
-# Twinkly backend assignment
+# StripePay backend assignment
 
 [![GitHub Super-Linter](https://github.com/nicolamoro/twinkly-assignment/workflows/Build/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
