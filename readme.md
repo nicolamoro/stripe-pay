@@ -1,6 +1,6 @@
 # StripePay backend assignment
 
-[![GitHub Super-Linter](https://github.com/nicolamoro/twinkly-assignment/workflows/Build/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/nicolamoro/stripe-pay/workflows/Build/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 ## Requirements
 
@@ -34,8 +34,8 @@ python app.py
 To start project using docker:
 
 ```bash
-docker build --pull --no-cache -t twinkly-assignment:0.1.0 -f Dockerfile .
-docker run --env-file .env -p 8888:8888 -ti --rm twinkly-assignment:0.1.0
+docker build --pull --no-cache -t stripe-pay:0.1.0 -f Dockerfile .
+docker run --env-file .env -p 8888:8888 -ti --rm stripe-pay:0.1.0
 ```
 
 ## Linters

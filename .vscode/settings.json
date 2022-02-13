@@ -52,8 +52,5 @@
   },
   "python.languageServer": "Pylance",
   "vscode-coverage-highlighter.defaultState": "disable",
-  "git.ignoreLimitWarning": true,
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "file:///home/niki/projects/twinkly-assignment/.github/workflows/build.yml"
-  }
+  "git.ignoreLimitWarning": true
 }
